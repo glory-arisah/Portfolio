@@ -1,6 +1,9 @@
-import { useState } from 'react'
+import { FormEvent, useState } from 'react'
 import { RevealOnScroll } from '../RevealOnScroll'
 import emailjs from 'emailjs-com'
+import * as Yup from 'yup'
+import { Icon } from '@iconify/react/dist/iconify.js'
+import { toast } from 'react-toastify'
 
 export const Contact = () => {
 	const [formData, setFormData] = useState({
@@ -9,28 +12,60 @@ export const Contact = () => {
 		message: '',
 	})
 
-	const disableSubmission = Object.values(formData).some((field) => !field)
+	function resetForm() {
+		setFormData({ name: '', email: '', message: '' })
+	}
 
-	function handleSubmit(e) {
+	const [formError, setFormError] = useState('')
+
+	const [isSendingEmail, setIsSendingEmail] = useState(false)
+
+	const schema = Yup.object().shape({
+		name: Yup.string().required(),
+		email: Yup.string().email().required(),
+		message: Yup.string()
+			.required()
+			.min(11, 'Message must contain at least 11 characters'),
+	})
+
+	const disableSubmission =
+		isSendingEmail || Object.values(formData).some((field) => !field)
+
+	async function handleSubmit(e: FormEvent) {
+		setFormError('')
 		e.preventDefault()
+
+		try {
+			await schema.validate(formData)
+		} catch (error) {
+			setFormError(error?.message || 'Something went wrong')
+			return
+		}
 
 		const { VITE_APP_SERVICE_ID, VITE_APP_TEMPLATE_ID, VITE_APP_PUBLIC_KEY } =
 			import.meta.env
 
-		emailjs
-			.sendForm(
+		setIsSendingEmail(true)
+
+		try {
+			await emailjs.sendForm(
 				VITE_APP_SERVICE_ID,
 				VITE_APP_TEMPLATE_ID,
-				e.target,
+				e.target as HTMLFormElement,
 				VITE_APP_PUBLIC_KEY
 			)
-			.then((result) => {
-				alert('Message Sent!')
-				setFormData({ name: '', email: '', message: '' })
+
+			toast.success('Message Sent!', {
+				autoClose: 3000,
 			})
-			.catch(() => {
-				alert('Oops! Something went wrong. Please try again')
+			resetForm()
+		} catch (error) {
+			toast.error('Oops! Something went wrong. Please try again', {
+				autoClose: 3000,
 			})
+		} finally {
+			setIsSendingEmail(false)
+		}
 	}
 
 	return (
@@ -43,6 +78,9 @@ export const Contact = () => {
 					<h2 className="text-3xl text-center font-bold mb-8 bg-gradient-to-r from-blue-500 to-cyan-400 bg-clip-text text-transparent">
 						Get in touch
 					</h2>
+					{formError && (
+						<div className="text-red-600 text-sm mb-2">{formError}</div>
+					)}
 					<form
 						className="space-y-6"
 						onSubmit={handleSubmit}
@@ -95,9 +133,16 @@ export const Contact = () => {
 						<button
 							type="submit"
 							disabled={disableSubmission}
-							className="w-full bg-blue-500 text-white py-3 px-6 rounded font-medium transition relative overflow-hidden hover:-translate-y-0.5 hover:shadow-[0_0_15px_rgba(59,130,246,0.4)] disabled:cursor-not-allowed disabled:opacity-30"
+							aria-disabled={disableSubmission}
+							className="w-full cursor-pointer inline-flex justify-center items-center gap-2 bg-blue-500 text-white py-3 px-6 rounded font-medium transition relative overflow-hidden hover:not-disabled:-translate-y-0.5 hover:not-disabled:shadow-[0_0_15px_rgba(59,130,246,0.4)] disabled:cursor-not-allowed disabled:opacity-30"
 						>
 							Send Message
+							{isSendingEmail && (
+								<Icon
+									icon="line-md:loading-twotone-loop"
+									fontSize="18"
+								/>
+							)}
 						</button>
 					</form>
 				</div>

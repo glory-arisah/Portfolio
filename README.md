@@ -1,12 +1,36 @@
-# React + Vite
+# 🧑‍💻 Glory Arisah – Developer Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Welcome to my personal developer portfolio! This project showcases my technical skills, projects, work experience, and education in a modern, responsive design.
 
-Currently, two official plugins are available:
+🌐 **Live Site**: [My Portfolio](https://glory-arisah.github.io/Portfolio)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## ✨ Overview
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+This portfolio was built to highlight my work as a frontend developer, with a focus on:
+
+- Clean UI/UX
+- Responsive and mobile-friendly layouts
+- Easy access to contact and social links
+
+---
+
+## 🛠️ Tech Stack
+
+- **Library**: React.js
+- **Styling**: Tailwind CSS
+- **UI**: Iconify/react, react-toastify
+- **Build Tools**: Vite
+- **Hosting**: GitHub Pages
+
+---
+
+## 🚀 Getting Started (for local dev)
+
+```bash
+git clone https://github.com/glory-arisah/Portfolio.git
+cd portfolio
+npm install
+npm run dev
+```
