@@ -97,9 +97,22 @@ export const About = () => {
 						<div className="p-6 rounded-xl border-white/10 border hover:-translate-y-1 transition-all">
 							<h3 className="text-xl font-bold mb-4">Work Experience</h3>
 							<div className="space-y-4 text-gray-300">
-								<div className="space-y-2">
+								<div>
 									<h4 className="font-semibold">
-										Frontend developer at Brooi Properties (2023 - Present)
+										Frontend developer at Scelloo (2024 - Current)
+									</h4>
+									<p>
+										Collaborated with Product Managers and backend teams to
+										build new features. Developed and maintained code for a
+										healthcare application and an ERP application, ensuring
+										reliability and adherence to project requirements. Managed
+										version control with Git/GitHub.
+									</p>
+								</div>
+
+								<div>
+									<h4 className="font-semibold">
+										Frontend developer at Brooi Properties (2023 - 2025)
 									</h4>
 									<p>
 										Built new features and maintained a clean Vue.js codebase
