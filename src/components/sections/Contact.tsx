@@ -1,11 +1,11 @@
-import { FormEvent, useState } from 'react'
-import { RevealOnScroll } from '../RevealOnScroll'
+import { type SubmitEvent, useState } from 'react'
+import { RevealOnScroll } from '../shared/RevealOnScroll'
 import emailjs from 'emailjs-com'
 import * as Yup from 'yup'
 import { Icon } from '@iconify/react/dist/iconify.js'
 import { toast } from 'react-toastify'
 
-export const Contact = () => {
+const Contact = () => {
 	const [formData, setFormData] = useState({
 		name: '',
 		email: '',
@@ -31,13 +31,13 @@ export const Contact = () => {
 	const disableSubmission =
 		isSendingEmail || Object.values(formData).some((field) => !field)
 
-	async function handleSubmit(e: FormEvent) {
+	async function handleSubmit(e: SubmitEvent) {
 		setFormError('')
 		e.preventDefault()
 
 		try {
 			await schema.validate(formData)
-		} catch (error) {
+		} catch (error: any) {
 			setFormError(error?.message || 'Something went wrong')
 			return
 		}
@@ -52,7 +52,7 @@ export const Contact = () => {
 				VITE_APP_SERVICE_ID,
 				VITE_APP_TEMPLATE_ID,
 				e.target as HTMLFormElement,
-				VITE_APP_PUBLIC_KEY
+				VITE_APP_PUBLIC_KEY,
 			)
 
 			toast.success('Message Sent!', {
@@ -74,7 +74,7 @@ export const Contact = () => {
 			className="min-h-screen flex items-center justify-center py-20"
 		>
 			<RevealOnScroll>
-				<div className="px-4 w-150">
+				<div className="px-4 w-auto sm:w-100 md:w-150">
 					<h2 className="text-3xl text-center font-bold mb-8 bg-gradient-to-r from-blue-500 to-cyan-400 bg-clip-text text-transparent">
 						Get in touch
 					</h2>
@@ -150,3 +150,5 @@ export const Contact = () => {
 		</section>
 	)
 }
+
+export default Contact

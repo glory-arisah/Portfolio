@@ -1,25 +1,7 @@
-import { RevealOnScroll } from '../RevealOnScroll'
+import { RevealOnScroll } from '@/components/shared/RevealOnScroll.js'
+import { frontendSkills, softSkills, workExperiences } from './data'
 
-export const About = () => {
-	const frontendSkills = [
-		'HTML',
-		'CSS',
-		'JavaScript',
-		'TypeScript',
-		'TailwindCSS',
-		'Git/Github',
-		'Vue',
-		'React',
-	]
-
-	const softSkills = [
-		'Attention to detail',
-		'Problem solving',
-		'Collaboration',
-		'Customer Service Orientation',
-		'Continuous learning',
-	]
-
+const About = () => {
 	return (
 		<section
 			id="about"
@@ -33,12 +15,24 @@ export const About = () => {
 
 					<div className="rounded-xl p-8 border-white/10 border hover:-translate-y-1 transition-all">
 						<p className="text-gray-300 mb-6">
-							Passionate developer with expertise in building scalable web
-							applications.
+							I'm a Frontend Engineer who's spent the past few years building
+							interfaces in fast-moving, product-driven environments — from
+							health-tech to property platforms — where requirements shift often
+							and shipping something usable matters more than shipping something
+							perfect. Vue.js is where I do my deepest work, but I've also built
+							production features in React and TypeScript, and I care as much
+							about how a codebase is structured as how it looks on screen —
+							which is part of why I've been investing time in testing (Jest)
+							and frontend architecture. Outside of day-to-day feature work, I'm
+							expanding what I can own end-to-end: picking up Next.js, learning
+							Playwright for proper E2E coverage, and starting to build backend
+							and database fundamentals. My goal is to keep growing into an
+							engineer who can take a project from idea to shipped product, not
+							just style the screens in between.
 						</p>
 
 						<div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-							<div className="rounded-xl p-6 hover:-translate-y-1 transition-all">
+							<div className="rounded-xl py-6 px-0 sm:px-6 hover:-translate-y-1 transition-all">
 								<h3 className="text-xl font-bold mb-4">Frontend skills</h3>
 								<div className="flex flex-wrap gap-2">
 									{frontendSkills.map((skill) => (
@@ -54,7 +48,7 @@ export const About = () => {
 								</div>
 							</div>
 
-							<div className="rounded-xl p-6 hover:-translate-y-1 transition-all">
+							<div className="rounded-xl py-6 px-0 sm:px-6 hover:-translate-y-1 transition-all">
 								<h3 className="text-xl font-bold mb-4">Soft skills</h3>
 								<div className="flex flex-wrap gap-2">
 									{softSkills.map((skill) => (
@@ -94,66 +88,18 @@ export const About = () => {
 								</ul>
 							</div>
 						</div>
+
 						<div className="p-6 rounded-xl border-white/10 border hover:-translate-y-1 transition-all">
 							<h3 className="text-xl font-bold mb-4">Work Experience</h3>
-							<div className="space-y-4 text-gray-300">
-								<div>
-									<h4 className="font-semibold">
-										Frontend developer at Scelloo (2024 - Current)
-									</h4>
-									<p>
-										Collaborated with Product Managers and backend teams to
-										build new features. Developed and maintained code for a
-										healthcare application and an ERP application, ensuring
-										reliability and adherence to project requirements. Managed
-										version control with Git/GitHub.
-									</p>
-								</div>
-
-								<div>
-									<h4 className="font-semibold">
-										Frontend developer at Brooi Properties (2023 - 2025)
-									</h4>
-									<p>
-										Built new features and maintained a clean Vue.js codebase
-										with Vuex and Vue Router in collaboration with
-										cross-functional teams.
-									</p>
-								</div>
-
-								<div>
-									<h4 className="font-semibold">
-										Application Development and Support Trainee at ipNX (2022 -
-										2023)
-									</h4>
-									<p>
-										Assisted in maintaining application uptime and building
-										internal tools with PHP/MySQL, while learning collaboration
-										tools like Zoho.
-									</p>
-								</div>
-
-								<div>
-									<h4 className="font-semibold">
-										Ruby on rails intern at Corna.io (2020)
-									</h4>
-									<p>
-										Used TDD with RSpec to build backend features and explored
-										React.js to understand frontend flow.
-									</p>
-								</div>
-
-								<div>
-									<h4 className="font-semibold">
-										Information Technology Operations Intern at Chevron Nigeria
-										Limited (2019)
-									</h4>
-									<p>
-										Built low-code solutions and supported IT operations while
-										gaining proficiency in PowerApps, Flow, SharePoint, and
-										Forms.
-									</p>
-								</div>
+							<div className="space-y-6 text-gray-300">
+								{workExperiences.map((exp) => (
+									<div key={exp.id}>
+										<h4 className="font-semibold text-[17px] mb-1">
+											{exp.title}
+										</h4>
+										<p>{exp.description}</p>
+									</div>
+								))}
 							</div>
 						</div>
 					</div>
@@ -162,3 +108,5 @@ export const About = () => {
 		</section>
 	)
 }
+
+export default About
