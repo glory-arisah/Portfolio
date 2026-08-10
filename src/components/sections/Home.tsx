@@ -1,6 +1,6 @@
-import { RevealOnScroll } from '../RevealOnScroll'
+import { RevealOnScroll } from '@/components/shared/RevealOnScroll.js'
 
-export const Home = () => {
+const Home = () => {
 	return (
 		<section
 			id="home"
@@ -12,14 +12,9 @@ export const Home = () => {
 						Hi, I'm Glory
 					</h1>
 
-					<p className="text-gray-400 text-lg mb-8 max-w-lg mx-auto">
-						A passionate Vue.js developer with a strong foundation in HTML, CSS,
-						and JavaScript. Seeking to leverage technical skills and creativity
-						to develop engaging user interfaces and experiences. Currently
-						expanding my expertise to include React.js, with the goal of
-						contributing as a proficient front-end web developer. Possessing
-						strong collaboration, problem-solving, and debugging capabilities to
-						create and enhance web applications
+					<p className="text-gray-400 text-lg mb-8 max-w-2xl mx-auto">
+						Frontend Engineer specializing in Vue.js, React, and TypeScript —
+						currently expanding into full-stack development.
 					</p>
 
 					<div className="flex justify-center space-x-4">
@@ -46,3 +41,5 @@ export const Home = () => {
 		</section>
 	)
 }
+
+export default Home
